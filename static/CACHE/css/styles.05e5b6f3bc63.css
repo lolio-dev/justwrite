@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap");
+/* line 1, static/styles/modules/header.scss */
+.header {
+  height: 58px;
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2; }
+  /* line 9, static/styles/modules/header.scss */
+  .header .logo {
+    transform: rotate(180deg);
+    height: 25px;
+    fill: #292929; }
+  /* line 15, static/styles/modules/header.scss */
+  .header .title {
+    font-size: 1.5em; }
+  /* line 20, static/styles/modules/header.scss */
+  .header .login-modal .login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 230px; }
+  /* line 30, static/styles/modules/header.scss */
+  .header .login-modal .title {
+    font-family: 'Zen Dots', sans-serif; }
+  /* line 34, static/styles/modules/header.scss */
+  .header .login-modal .login-providers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; }
+    /* line 39, static/styles/modules/header.scss */
+    .header .login-modal .login-providers .login-provider {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px;
+      width: 300px;
+      border: 1px solid #242424;
+      font-size: 16px;
+      line-height: 24px;
+      border-radius: 99em; }
+      /* line 52, static/styles/modules/header.scss */
+      .header .login-modal .login-providers .login-provider .hiden-area {
+        width: 24px;
+        height: 24px; }
+  /* line 60, static/styles/modules/header.scss */
+  .header .login-modal .switch-scope .cta {
+    color: #1a8917;
+    font-weight: bold; }
+
+/* line 3, static/styles/components/button.scss */
+.button__primary {
+  border: 1px solid #292929;
+  border-radius: 12px;
+  color: #292929;
+  padding: 6px 12px;
+  font-weight: 700; }
+
+/* line 1, static/styles/components/modal.scss */
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%; }
+  /* line 14, static/styles/components/modal.scss */
+  .modal .modal__content {
+    height: 66%;
+    width: 678px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px;
+    border-radius: 4px;
+    padding: 44px 56px;
+    background: white;
+    animation: 300ms cubic-bezier(0.25, 0.1, 0.25, 1) 0s 1 normal forwards running open-modal; }
+  /* line 25, static/styles/components/modal.scss */
+  .modal .modal__close-icon {
+    width: 100%;
+    display: flex;
+    justify-content: end; }
+
+@keyframes open-modal {
+  0% {
+    opacity: 0; }
+  25% {
+    transform: scale(0.9); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+
+/* line 11, static/styles/styles.scss */
+* {
+  font-family: "Open Sans", sans-serif; }

@@ -1,0 +1,8 @@
+/* line 1, static/styles/modules/header.scss */
+.header {
+  height: 64px;
+  padding: 0 48px;
+  background: #eaeded;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }

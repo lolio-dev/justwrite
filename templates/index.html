@@ -1,0 +1,191 @@
+{% load static %}
+{% load compress %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}JustWrite{% endblock %}</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@3.3.5/src/css/preflight.css">
+    {% compress css %}
+        <link type="text/x-scss" href="{% static '/styles/styles.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+</head>
+<body class="h-screen">
+<header
+        class="header"
+        x-data="{
+            openLoginModal: false,
+            scope: 'login'
+        }"
+>
+    <div>
+        <svg viewBox="0 0 1043.63 592.71" class="logo">
+            <g data-name="Layer 2">
+                <g data-name="Layer 1">
+                    <path d="M588.67 296.36c0 163.67-131.78 296.35-294.33 296.35S0 460 0 296.36 131.78 0 294.34 0s294.33 132.69 294.33 296.36M911.56 296.36c0 154.06-65.89 279-147.17 279s-147.17-124.94-147.17-279 65.88-279 147.16-279 147.17 124.9 147.17 279M1043.63 296.36c0 138-23.17 249.94-51.76 249.94s-51.75-111.91-51.75-249.94 23.17-249.94 51.75-249.94 51.76 111.9 51.76 249.94"></path>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <div>
+        {% if user.is_authenticated %}
+            <p>Notifications</p>
+            <p>Photo de profil</p>
+        {% else %}
+            <button
+                    class="button button__primary"
+                    @click="openLoginModal = true"
+            >
+                Se connecter
+            </button>
+        {% endif %}
+    </div>
+
+    <div
+            x-show="openLoginModal"
+            class="modal auth-modal"
+    >
+        <div @click.outside="openLoginModal = false" class="modal__content">
+            <div class="modal__close-icon" @click="openLoginModal = false">
+                <svg class="oq or" width="29" height="29">
+                    <path d="M20.13 8.11l-5.61 5.61-5.6-5.61-.81.8 5.61 5.61-5.61 5.61.8.8 5.61-5.6 5.61 5.6.8-.8-5.6-5.6 5.6-5.62"
+                          fill-rule="evenodd"></path>
+                </svg>
+            </div>
+
+            <template x-if="scope === 'login'">
+                <div class="auth-modal-content">
+                    <h3 class="title">Welcome back</h3>
+
+                    <div class="login-providers">
+                        <a class="login-provider">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+                                <g fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M20.64 12.2c0-.63-.06-1.25-.16-1.84H12v3.49h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92a8.78 8.78 0 0 0 2.68-6.61z"
+                                          fill="#4285F4"></path>
+                                    <path d="M12 21a8.6 8.6 0 0 0 5.96-2.18l-2.91-2.26a5.41 5.41 0 0 1-8.09-2.85h-3v2.33A9 9 0 0 0 12 21z"
+                                          fill="#34A853"></path>
+                                    <path d="M6.96 13.71a5.41 5.41 0 0 1 0-3.42V7.96h-3a9 9 0 0 0 0 8.08l3-2.33z"
+                                          fill="#FBBC05"></path>
+                                    <path d="M12 6.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 3.96 7.96l3 2.33A5.36 5.36 0 0 1 12 6.6z"
+                                          fill="#EA4335"></path>
+                                </g>
+                            </svg>
+                            Sign in with Google
+                            <span class="hiden-area"></span>
+                        </a>
+                        <a class="login-provider">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+                                <path d="M22 12a10 10 0 1 0-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.78-1.63 1.57V12h2.78l-.45 2.9h-2.33v6.98A10 10 0 0 0 22 12z"
+                                      fill="#1877F2"></path>
+                                <path d="M15.9 14.9l.44-2.9h-2.78v-1.87c0-.8.39-1.57 1.63-1.57h1.26V6.1s-1.14-.2-2.24-.2c-2.28 0-3.77 1.4-3.77 3.9V12H7.9v2.9h2.54v6.98a10.07 10.07 0 0 0 3.12 0V14.9h2.33z"
+                                      fill="#fff"></path>
+                            </svg>
+
+                            Sign in with Facebook
+                            <span class="hiden-area"></span>
+                        </a>
+                        <a class="login-provider" @click="scope = 'login-form'">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+                                <g stroke="#242424">
+                                    <rect x="3.5" y="5.5" width="17" height="13" rx="1"></rect>
+                                    <path d="M3.5 8l8.5 6 8.5-6" stroke-linecap="round"></path>
+                                </g>
+                            </svg>
+                            Sign in with email
+                            <span class="hiden-area"></span>
+                        </a>
+                    </div>
+
+                    <p
+                            class="switch-scope"
+                            @click="scope = 'signup'"
+                    >
+                        No accounts ?
+                        <button class="cta">Create one</button>
+                    </p>
+                </div>
+            </template>
+            <template x-if="scope === 'signup'">
+                <div class="auth-modal-content">
+                    <h3 class="title">Join JustWrite</h3>
+
+                    <div class="login-providers">
+                        <a class="login-provider">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+                                <g fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M20.64 12.2c0-.63-.06-1.25-.16-1.84H12v3.49h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92a8.78 8.78 0 0 0 2.68-6.61z"
+                                          fill="#4285F4"></path>
+                                    <path d="M12 21a8.6 8.6 0 0 0 5.96-2.18l-2.91-2.26a5.41 5.41 0 0 1-8.09-2.85h-3v2.33A9 9 0 0 0 12 21z"
+                                          fill="#34A853"></path>
+                                    <path d="M6.96 13.71a5.41 5.41 0 0 1 0-3.42V7.96h-3a9 9 0 0 0 0 8.08l3-2.33z"
+                                          fill="#FBBC05"></path>
+                                    <path d="M12 6.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 3.96 7.96l3 2.33A5.36 5.36 0 0 1 12 6.6z"
+                                          fill="#EA4335"></path>
+                                </g>
+                            </svg>
+                            Sign up with Google
+                            <span class="hiden-area"></span>
+                        </a>
+                        <a class="login-provider">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+                                <path d="M22 12a10 10 0 1 0-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.78-1.63 1.57V12h2.78l-.45 2.9h-2.33v6.98A10 10 0 0 0 22 12z"
+                                      fill="#1877F2"></path>
+                                <path d="M15.9 14.9l.44-2.9h-2.78v-1.87c0-.8.39-1.57 1.63-1.57h1.26V6.1s-1.14-.2-2.24-.2c-2.28 0-3.77 1.4-3.77 3.9V12H7.9v2.9h2.54v6.98a10.07 10.07 0 0 0 3.12 0V14.9h2.33z"
+                                      fill="#fff"></path>
+                            </svg>
+                            Sign up with Facebook
+                            <span class="hiden-area"></span>
+                        </a>
+                        <a class="login-provider" @click="scope = 'signup-form'">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+                                <g stroke="#242424">
+                                    <rect x="3.5" y="5.5" width="17" height="13" rx="1"></rect>
+                                    <path d="M3.5 8l8.5 6 8.5-6" stroke-linecap="round"></path>
+                                </g>
+                            </svg>
+                            Sign up with email
+                            <span class="hiden-area"></span>
+                        </a>
+                    </div>
+
+                    <p
+                            class="switch-scope"
+                            @click="scope = 'login'"
+                    >
+                        Already have an account?
+                        <button class="cta">Sign in</button>
+                    </p>
+                </div>
+            </template>
+            <template x-if="scope === 'login-form'">
+                <div class="auth-modal-content">
+                    <h3 class="title">Sign in with email</h3>
+
+                    <button class="button button-primary">Continue</button>
+                    <button @click="scope = 'login'" class="cta">< All sign in options</button>
+                </div>
+            </template>
+            <template x-if="scope === 'signup-form'">
+                <div class="auth-modal-content">
+                    <h3 class="title">Sign up with email</h3>
+
+                    <form method="POST" action="{% url 'signup' %}" class="form">
+                        {% csrf_token %}
+                        {{ signup_form.as_div }}
+                        <input type="submit" class="button button-primary" value="continue">
+                    </form>
+
+                    <button @click="scope = 'signup'" class="cta">< All sign up options</button>
+                </div>
+            </template>
+        </div>
+    </div>
+</header>
+</body>
+</html>

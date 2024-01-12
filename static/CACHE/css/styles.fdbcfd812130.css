@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+/* line 1, static/styles/modules/header.scss */
+.header {
+  height: 64px;
+  padding: 0 48px;
+  background: #eaeded;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+/* line 3, static/styles/components/button.scss */
+.button__primary {
+  background: #5dade2;
+  border-radius: 12px; }
+
+/* line 7, static/styles/styles.scss */
+* {
+  font-family: "Open Sans", sans-serif; }

@@ -1,0 +1,16 @@
+services:
+  postgresql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: toto
+      POSTGRES_DB: justwrite
+    volumes:
+      - type: volume
+        source: db-data
+        target: /var/lib/mysql
+    ports:
+      - "5447:5432"
+volumes:
+  db-data:
